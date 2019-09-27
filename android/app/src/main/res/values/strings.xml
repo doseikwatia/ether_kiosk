@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Ether Kiosk</string>
+    <string name="facebook_app_id">2506487046250590</string>
+    <string name="fb_login_protocol_scheme">fb2506487046250590</string>
+</resources>
