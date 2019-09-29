@@ -15,6 +15,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "720981351192-6e5p8i091lhqbo3q9m41q1jm4b39sj4c.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.ether_solutions.ether_kiosk",
+            "certificate_hash": "b42b668a3cf698b1150cac28f47558ddb0c198ff"
+          }
+        },
+        {
           "client_id": "720981351192-hdfkgt6nrkrtc5t8bnbnfee69bm9rqdl.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {

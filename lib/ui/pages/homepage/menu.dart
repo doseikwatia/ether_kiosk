@@ -1,5 +1,6 @@
 import 'package:ether_kiosk/models/appstate.dart';
 import 'package:ether_kiosk/store/index.dart';
+import 'package:ether_kiosk/ui/pages/my_orders.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_redux/flutter_redux.dart';
 
@@ -13,22 +14,37 @@ class Menu extends StatelessWidget {
         child: Column(
           children: <Widget>[
             Container(
-              height: 120,
-              alignment: Alignment.bottomCenter,
-              child: CircleAvatar(
-                backgroundImage:NetworkImage(store.state.authInfo.user.photoUrl,),
-                radius: 30,
-              )
-            ),
-              Text(
-                store.state.authInfo.user.displayName.split(' ')
-                    .map((s)=>'${s[0].toUpperCase()}${s.substring(1)}')
-                .join(' '),
-                style: TextStyle(
-                  color: Theme.of(context).primaryColor,
-                  fontSize: 12,
-                ),
+                height: 120,
+                alignment: Alignment.bottomCenter,
+                child: CircleAvatar(
+                  backgroundImage: NetworkImage(
+                    store.state.authInfo.user.photoUrl,
+                  ),
+                  radius: 30,
+                )),
+            Text(
+              store.state.authInfo.user.displayName
+                  .split(' ')
+                  .map((s) => '${s[0].toUpperCase()}${s.substring(1)}')
+                  .join(' '),
+              style: TextStyle(
+                color: Theme.of(context).primaryColor,
+                fontSize: 12,
               ),
+            ),
+            Divider(
+              height: 20,
+              color: Colors.black,
+            ),
+            _MediaItem(
+                title: 'My Orders',
+                icon: Icons.shopping_cart,
+                onTap: () => Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (_) => MyOrders(),
+                      ),
+                    )),
             Divider(
               height: 20,
               color: Colors.black,
@@ -50,7 +66,7 @@ class Menu extends StatelessWidget {
                 store.dispatch(SignOutAction(context: context));
               },
               color: Colors.red,
-            )
+            ),
           ],
         ),
       ),
