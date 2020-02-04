@@ -40,17 +40,24 @@ class LoginPage extends StatelessWidget {
                     Spacer(),
                     IconButton(
                       icon: Icon(FontAwesomeIcons.google),
-                      iconSize: 70.0,
+                      iconSize: 50.0,
                       onPressed: () =>
                           viewModel.onSignInWithGoogleClicked(context),
                       color: Colors.red,
                     ),
                     IconButton(
                       icon: Icon(FontAwesomeIcons.facebook),
-                      iconSize: 70.0,
+                      iconSize: 50.0,
                       onPressed: () =>
                           viewModel.onSingInWithFacebookClicked(context),
                       color: Colors.indigo,
+                    ),
+                   IconButton(
+                      icon: Icon(FontAwesomeIcons.solidEnvelope),
+                      iconSize: 50.0,
+                      onPressed: () =>
+                          viewModel.onSigninWithEmailClicked(context),
+                      color: Colors.orange,
                     ),
                     Spacer()
                   ],
@@ -73,4 +80,7 @@ class _LoginPageViewModel {
 
   void onSingInWithFacebookClicked(BuildContext ctx) =>
       store.dispatch(SignInWithFacebookAction(context: ctx));
+
+  void onSigninWithEmailClicked(BuildContext ctx) =>
+    store.dispatch(SignInWithEmailAction(context: ctx));
 }

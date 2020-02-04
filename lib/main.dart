@@ -6,6 +6,7 @@ import 'models/appstate.dart';
 import 'store/index.dart';
 
 Future main() async {
+  WidgetsFlutterBinding.ensureInitialized();
   final List<Middleware<AppState>> middlewares = []..addAll(authMiddlewares);
   final store = new Store<AppState>(appReducer,
       initialState: AppState.initial(), middleware: middlewares);

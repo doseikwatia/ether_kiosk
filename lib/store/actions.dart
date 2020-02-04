@@ -42,6 +42,13 @@ class SignInWithFacebookAction {
 }
 
 
+class SignInWithEmailAction {
+  final BuildContext context;
+
+  SignInWithEmailAction({this.context});
+}
+
+
 class ShowNotificationAction {
   final String message;
   final int duration;
