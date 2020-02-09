@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_redux/flutter_redux.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:redux/redux.dart';
+import 'emailloginpage.dart';
 
 class LoginPage extends StatelessWidget {
   @override
@@ -55,8 +56,14 @@ class LoginPage extends StatelessWidget {
                    IconButton(
                       icon: Icon(FontAwesomeIcons.solidEnvelope),
                       iconSize: 50.0,
-                      onPressed: () =>
-                          viewModel.onSigninWithEmailClicked(context),
+                      onPressed: () {
+                        Navigator.push(
+                          context, 
+                          MaterialPageRoute(
+                            builder:(context)=> EmailLoginPage()
+                          )
+                          );
+                      },
                       color: Colors.orange,
                     ),
                     Spacer()
