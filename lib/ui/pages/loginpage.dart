@@ -89,5 +89,5 @@ class _LoginPageViewModel {
       store.dispatch(SignInWithFacebookAction(context: ctx));
 
   void onSigninWithEmailClicked(BuildContext ctx) =>
-    store.dispatch(SignInWithEmailAction(context: ctx));
+    store.dispatch(SignInWithEmailAction("","",context: ctx));//TODO: use appropriate username and password variables
 }

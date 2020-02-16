@@ -44,8 +44,9 @@ class SignInWithFacebookAction {
 
 class SignInWithEmailAction {
   final BuildContext context;
-
-  SignInWithEmailAction({this.context});
+  final String email;
+  final String password;
+  SignInWithEmailAction(this.email, this.password, {this.context});
 }
 
 

@@ -20,21 +20,21 @@ final List<Middleware<AppState>> authMiddlewares = [
   new TypedMiddleware<AppState, SignOutAction>(_signOutMiddleware),
   new TypedMiddleware<AppState, SignInWithFacebookAction>(
       _signInWithFacebookMiddleware),
+  new TypedMiddleware<AppState, SignInWithEmailAction>(_signInWithEmail)
 ];
 
-
-void _signInWithFacebookMiddleware(
-    Store<AppState> store, SignInWithFacebookAction action, NextDispatcher next) async {
+void _signInWithFacebookMiddleware(Store<AppState> store,
+    SignInWithFacebookAction action, NextDispatcher next) async {
   store.dispatch(new UpdateAuthInfoAction(userState: UserState.Signing_In));
   FacebookLoginResult facebookLoginResult =
-      await _facebookLogin.logIn(['email','public_profile']);
+      await _facebookLogin.logIn(['email', 'public_profile']);
   Firebase.auth
       .signInWithCredential(FacebookAuthProvider.getCredential(
           accessToken: facebookLoginResult.accessToken
               .token)) //accessToken: facebookLoginResult.accessToken.token
       .then((result) {
-    store.dispatch(
-        UpdateAuthInfoAction(user: result.user, userState: UserState.Signed_In));
+    store.dispatch(UpdateAuthInfoAction(
+        user: result.user, userState: UserState.Signed_In));
   }).catchError((err) {
     print('Error $err occured.');
     showNotification(action.context, store, 'An error occurred',
@@ -44,8 +44,8 @@ void _signInWithFacebookMiddleware(
   });
 }
 
-void _signInWithGoogleMiddleware(
-    Store<AppState> store, SignInWithGoogleAction action, NextDispatcher next) async {
+void _signInWithGoogleMiddleware(Store<AppState> store,
+    SignInWithGoogleAction action, NextDispatcher next) async {
   store.dispatch(new UpdateAuthInfoAction(userState: UserState.Signing_In));
   GoogleSignInAccount googleUser = await _googleSignIn.signIn();
   GoogleSignInAuthentication googleAuth = await googleUser.authentication;
@@ -55,8 +55,8 @@ void _signInWithGoogleMiddleware(
           accessToken: googleAuth
               .accessToken)) // accessToken: googleAuth.accessToken,idToken: googleAuth.idToken,
       .then((result) {
-    store.dispatch(
-        new UpdateAuthInfoAction(user: result.user, userState: UserState.Signed_In));
+    store.dispatch(new UpdateAuthInfoAction(
+        user: result.user, userState: UserState.Signed_In));
   }).catchError((err) {
     print('Error $err occured.');
     showNotification(action.context, store, 'An error occurred',
@@ -69,16 +69,23 @@ void _signInWithGoogleMiddleware(
 void _signOutMiddleware(
     Store<AppState> store, SignOutAction action, NextDispatcher next) async {
   store.dispatch(new UpdateAuthInfoAction(userState: UserState.Signing_Out));
-  Firebase.auth
-      .signOut()
-      .then((user){ store
-          .dispatch(new UpdateAuthInfoAction(userState: UserState.Signed_Out));
-      })
-      .catchError((err) {
+  Firebase.auth.signOut().then((user) {
+    store.dispatch(new UpdateAuthInfoAction(userState: UserState.Signed_Out));
+  }).catchError((err) {
     print('Error $err occured.');
     showNotification(action.context, store, 'An error occurred',
         notificationType: NotificationType.Toast);
     store.dispatch(new UpdateAuthInfoAction(
         userState: UserState.Sign_Out_Err, errMsg: err.toString()));
+  });
+}
+
+void _signInWithEmail(
+    Store<AppState> store, SignInWithEmailAction action, next) {
+  store.dispatch(new UpdateAuthInfoAction(userState: UserState.Signing_In));
+  Firebase.auth.signInWithEmailAndPassword(email: action.email, password: action.password).then((user) {
+    print(user);
+  }).catchError((err) {
+    print(err);
   });
 }
