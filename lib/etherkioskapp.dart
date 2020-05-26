@@ -53,7 +53,7 @@ class _EtherKioskAppState extends State<EtherKioskApp>
                   primarySwatch: Colors.green,
                 ),
                 routes: routes,
-                home: routes[(vm == UserState.Signed_In ? '/home' : '/login')](
+                home: routes[(vm == UserState.Signed_In ? '/home' : '/authentication')](
                     context),
               );
             }));

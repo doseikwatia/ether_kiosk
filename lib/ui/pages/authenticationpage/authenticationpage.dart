@@ -1,18 +1,17 @@
 import 'package:ether_kiosk/constants.dart';
-import 'package:ether_kiosk/models/appstate.dart';
-import 'package:ether_kiosk/ui/widgets.dart/loginform.dart';
-import 'package:ether_kiosk/ui/widgets.dart/registrationform.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_redux/flutter_redux.dart';
 
-class LoginPage extends StatefulWidget {
+import 'loginform.dart';
+import 'registrationform.dart';
+
+class AuthenticationPage extends StatefulWidget {
   @override
-  _LoginPageState createState() => _LoginPageState();
+  _AuthenticationPageState createState() => _AuthenticationPageState();
 }
 
 enum Mode { Login, Register }
 
-class _LoginPageState extends State<LoginPage> {
+class _AuthenticationPageState extends State<AuthenticationPage> {
   Mode _mode;
   
   @override
