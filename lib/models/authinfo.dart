@@ -1,4 +1,3 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:meta/meta.dart';
 enum UserState {
   Signed_In,
@@ -10,7 +9,7 @@ enum UserState {
 }
 @immutable
 class AuthInfo {
-  final FirebaseUser user;
+  final dynamic user;
   final UserState userState;
   final String errMsg;
   final String email;
@@ -25,7 +24,7 @@ class AuthInfo {
       this.email});
 
   AuthInfo copyWith(
-      {FirebaseUser user,
+      {dynamic user,
       UserState userState,
       String errMsg = '',
       String email,

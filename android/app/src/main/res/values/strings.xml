@@ -3,4 +3,7 @@
     <string name="app_name">Ether Kiosk</string>
     <string name="facebook_app_id">2506487046250590</string>
     <string name="fb_login_protocol_scheme">fb2506487046250590</string>
+    <string name="back4app_server_url">https://parseapi.back4app.com/</string>
+    <string name="back4app_app_id">OaoQtXvrIncvFLwOv8qsUuH2DeEhiPn8bdjGPg1X</string>
+    <string name="back4app_client_key">wQZXFJXbKp9uZRElTQkbDmyF8maVaY5qNBB7q3bw</string>
 </resources>

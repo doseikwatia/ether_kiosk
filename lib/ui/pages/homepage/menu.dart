@@ -18,12 +18,12 @@ class Menu extends StatelessWidget {
                 alignment: Alignment.bottomCenter,
                 child: CircleAvatar(
                   backgroundImage: NetworkImage(
-                    store.state.authInfo.user.photoUrl,
+                    '' // store.state.authInfo.user.photoUrl,
                   ),
                   radius: 30,
                 )),
             Text(
-              store.state.authInfo.user.displayName
+              'Daniel Osei'  // store.state.authInfo.user.displayName
                   .split(' ')
                   .map((s) => '${s[0].toUpperCase()}${s.substring(1)}')
                   .join(' '),

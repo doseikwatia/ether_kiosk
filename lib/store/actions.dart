@@ -1,12 +1,12 @@
 import 'package:ether_kiosk/models/authinfo.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:parse_server_sdk/parse_server_sdk.dart';
 
 import 'middlewares/notification_middleware.dart';
 
 class UpdateAuthInfoAction {
   final UserState userState;
-  final FirebaseUser user;
+  final ParseUser user;
   final String errMsg;
   final String email;
   final String password;
@@ -58,4 +58,19 @@ class ShowNotificationAction {
   ShowNotificationAction(this.context, this.message,
       {this.duration = 2500,
       this.notificationType = NotificationType.SnackBar});
+}
+
+class RegisterWithUsernameAndPasswordAction {
+  final String username;
+  final String password;
+  final String email;
+  final BuildContext context;
+  RegisterWithUsernameAndPasswordAction(this.username, this.password, this.email, {this.context});
+}
+
+class SigninWithUsernameAndPasswordAction {
+  final String username;
+  final String password;
+  final BuildContext context;
+  SigninWithUsernameAndPasswordAction(this.username, this.password, {this.context});
 }
