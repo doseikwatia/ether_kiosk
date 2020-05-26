@@ -3,5 +3,5 @@ import 'package:flutter/material.dart';
 
 final routes = <String, WidgetBuilder>{
   '/home': (context) => HomePage(),
-  '/login': (context) => LoginPage(),
+  '/authentication': (context) => AuthenticationPage(),
 };
