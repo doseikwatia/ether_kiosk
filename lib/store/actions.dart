@@ -74,3 +74,11 @@ class SigninWithUsernameAndPasswordAction {
   final BuildContext context;
   SigninWithUsernameAndPasswordAction(this.username, this.password, {this.context});
 }
+
+class PasswordResetAction{
+  final String email;
+  final String oldPassword;
+  final String newPassword;
+  final BuildContext context;
+  PasswordResetAction(this.email, this.oldPassword, this.newPassword, this.context);
+}

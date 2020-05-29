@@ -22,7 +22,9 @@ final List<Middleware<AppState>> authMiddlewares = [
   new TypedMiddleware<AppState, RegisterWithUsernameAndPasswordAction>(
       _registerWithUsernameAndPassword),
   new TypedMiddleware<AppState, SigninWithUsernameAndPasswordAction>(
-      _signinWithUsernameAndPassword)
+      _signinWithUsernameAndPassword),
+  new TypedMiddleware<AppState, PasswordResetAction>(
+    _passwordReset)
 ];
 
 void _signinWithUsernameAndPassword(Store<AppState> store,
@@ -149,3 +151,9 @@ void _signOutMiddleware(
   store.dispatch(new UpdateAuthInfoAction(userState: UserState.Signing_Out));
   store.state.authInfo.user.logout(deleteLocalUserData: true);
 }
+ //TODO: Find out how to handle password reset in redux
+void _passwordReset(Store<AppState> store, PasswordResetAction action, NextDispatcher next) async{
+  store.dispatch(new UpdateAuthInfoAction(userState: UserState.Sign_In_Err));
+
+}
+
