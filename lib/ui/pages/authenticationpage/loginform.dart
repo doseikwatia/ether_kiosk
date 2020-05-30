@@ -5,8 +5,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_redux/flutter_redux.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:form_field_validator/form_field_validator.dart';
+import 'package:flutter_redux/flutter_redux.dart';
 import 'package:flutter/gestures.dart';
-import 'passwordreset.dart';
+
 
 class LoginForm extends StatelessWidget {
   final void Function() closeFn;
@@ -15,10 +16,56 @@ class LoginForm extends StatelessWidget {
     this.closeFn,
   }) : super(key: key);
 
+  void showForgotPasswordDialog(BuildContext context, dynamic store) {
+    var formKey = GlobalKey<FormState>();
+    String email;
+    TextEditingController custcontrol = TextEditingController();
+    showDialog(context: context,
+    barrierDismissible: false,
+    child:    AlertDialog(
+      title: Text('Request Password Reset link',
+          style: TextStyle(
+              color: Colors.blue, fontSize: 15, fontWeight: FontWeight.bold)),
+      content: Form(
+        key: formKey,
+        child: TextFormField(
+          controller: custcontrol,
+          validator: MultiValidator([
+            EmailValidator(errorText: 'enter a valid email'),
+            RequiredValidator(errorText: 'this field is required')
+          ]),
+          decoration: InputDecoration(hintText: 'enter your email'),
+          onChanged: (value) => email = value,
+        ),
+      ),
+      actions: <Widget>[
+        MaterialButton(
+          elevation: 3.0,
+          child: Text(
+            'Cancel',
+            style: TextStyle(color: Colors.white),
+          ),
+          color: Colors.grey,
+          onPressed: () => Navigator.pop(context),
+        ),
+        MaterialButton(
+          elevation: 3.0,
+          child: Text('Submit'),
+          color: Colors.green,
+          onPressed: () {
+            if (!formKey.currentState.validate()) return;
+            store.dispatch(PasswordResetAction(email, context));
+            Navigator.pop(context);
+          },
+        )
+      ],
+    )
+   );
+}
+
   @override
   Widget build(BuildContext context) {
     var store = StoreProvider.of<AppState>(context);
-    TextEditingController custcontrol = TextEditingController();
     String email, password;
     var formKey = GlobalKey<FormState>();
     return Column(
@@ -96,9 +143,7 @@ class LoginForm extends StatelessWidget {
                   text: 'Forgot Password?',
                   style: TextStyle(fontSize: 15, color: Colors.blue),
                   recognizer: TapGestureRecognizer()
-                    ..onTap = () => Navigator.push(context,
-                     MaterialPageRoute(builder: (_) => PasswordResetDialog()))
-                    )),
+                    ..onTap = () => showForgotPasswordDialog(context, store) )),
         ),
         Padding(
           padding: const EdgeInsets.all(8.0),
