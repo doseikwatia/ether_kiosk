@@ -6,6 +6,8 @@ import 'package:flutter_redux/flutter_redux.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:form_field_validator/form_field_validator.dart';
 import 'package:flutter/gestures.dart';
+import 'passwordreset.dart';
+
 class LoginForm extends StatelessWidget {
   final void Function() closeFn;
   LoginForm({
@@ -13,33 +15,10 @@ class LoginForm extends StatelessWidget {
     this.closeFn,
   }) : super(key: key);
 
-  createPasswordResetDialog(BuildContext context){
-    TextEditingController custcontrol = TextEditingController();
-    return showDialog(context: context, builder:(context){
-      return AlertDialog(
-        title: Text('Request Password Reset link',style: TextStyle(color: Colors.blue, fontSize: 15, fontWeight: FontWeight.bold) ),
-        content: TextFormField(
-          controller:  custcontrol,
-          decoration: InputDecoration(
-            hintText: 'input email'
-          )
-        ),
-        actions: <Widget>[
-          MaterialButton(
-            elevation: 3.0,
-            child: Text('Submit'),
-            color: Colors.green,
-            onPressed: (){}, //TODO: function will need to make a call to parse backend and send a reset password email to the users email address
-          )
-        ],
-
-      );
-
-    });
-  }
   @override
   Widget build(BuildContext context) {
     var store = StoreProvider.of<AppState>(context);
+    TextEditingController custcontrol = TextEditingController();
     String email, password;
     var formKey = GlobalKey<FormState>();
     return Column(
@@ -103,7 +82,6 @@ class LoginForm extends StatelessWidget {
                             color: Colors.green,
                             textColor: Colors.white,
                           ),
-   
                         ],
                       ),
                     )
@@ -114,14 +92,13 @@ class LoginForm extends StatelessWidget {
         Padding(
           padding: const EdgeInsets.fromLTRB(4, 0, 4, 2),
           child: RichText(
-            text:TextSpan(
-              text: 'Forgot Password?',
-              style: TextStyle(fontSize: 15, color: Colors.blue),
-              recognizer: TapGestureRecognizer()..onTap = () {
-                createPasswordResetDialog(context);
-              }
-              )
-          ),
+              text: TextSpan(
+                  text: 'Forgot Password?',
+                  style: TextStyle(fontSize: 15, color: Colors.blue),
+                  recognizer: TapGestureRecognizer()
+                    ..onTap = () => Navigator.push(context,
+                     MaterialPageRoute(builder: (_) => PasswordResetDialog()))
+                    )),
         ),
         Padding(
           padding: const EdgeInsets.all(8.0),

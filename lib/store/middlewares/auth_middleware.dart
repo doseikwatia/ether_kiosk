@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:ether_kiosk/models/appstate.dart';
 import 'package:ether_kiosk/models/authinfo.dart';
+import 'package:ether_kiosk/parse.dart';
 import 'package:ether_kiosk/store/actions.dart';
 import 'package:flutter_facebook_login/flutter_facebook_login.dart';
 import 'package:google_sign_in/google_sign_in.dart';
@@ -153,7 +154,14 @@ void _signOutMiddleware(
 }
  //TODO: Find out how to handle password reset in redux
 void _passwordReset(Store<AppState> store, PasswordResetAction action, NextDispatcher next) async{
-  store.dispatch(new UpdateAuthInfoAction(userState: UserState.Sign_In_Err));
+  var user = ParseUser.createUser(action.email,null,action.email);
+  var response =await user.requestPasswordReset();
 
+  if (!response.success){
+      showNotification(action.context, store, response.error.message,
+          notificationType: NotificationType.Toast);
+      return;
+  }
+  
 }
 

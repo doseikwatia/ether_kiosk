@@ -77,8 +77,6 @@ class SigninWithUsernameAndPasswordAction {
 
 class PasswordResetAction{
   final String email;
-  final String oldPassword;
-  final String newPassword;
   final BuildContext context;
-  PasswordResetAction(this.email, this.oldPassword, this.newPassword, this.context);
+  PasswordResetAction(this.email, this.context);
 }
