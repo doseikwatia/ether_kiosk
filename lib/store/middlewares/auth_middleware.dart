@@ -154,7 +154,7 @@ void _signOutMiddleware(
 }
  //TODO: Find out how to handle password reset in redux
 void _passwordReset(Store<AppState> store, PasswordResetAction action, NextDispatcher next) async{
-  var user = ParseUser.createUser(action.email,null,action.email);
+  var user = ParseUser.createUser(null,null,action.email);
   var response =await user.requestPasswordReset();
 
   if (!response.success){
