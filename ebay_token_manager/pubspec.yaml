@@ -1,0 +1,13 @@
+name: ebay_token_manager
+description: This app is written to manager ether kiosk's ebay tokens
+version: 0.0.1
+author: Daniel Osei
+
+
+dependencies:
+  http: ^0.12.1
+  args: ^1.6.0
+  json_serializable: ^3.3.0
+
+dev_dependencies:
+  build_runner:

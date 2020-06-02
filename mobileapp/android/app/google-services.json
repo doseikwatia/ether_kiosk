@@ -1,0 +1,56 @@
+{
+  "project_info": {
+    "project_number": "720981351192",
+    "firebase_url": "https://etherkiosk.firebaseio.com",
+    "project_id": "etherkiosk",
+    "storage_bucket": "etherkiosk.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:720981351192:android:79c955b7f7e205f1cb9c6d",
+        "android_client_info": {
+          "package_name": "com.ether_solutions.ether_kiosk"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "720981351192-6e5p8i091lhqbo3q9m41q1jm4b39sj4c.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.ether_solutions.ether_kiosk",
+            "certificate_hash": "b42b668a3cf698b1150cac28f47558ddb0c198ff"
+          }
+        },
+        {
+          "client_id": "720981351192-hdfkgt6nrkrtc5t8bnbnfee69bm9rqdl.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.ether_solutions.ether_kiosk",
+            "certificate_hash": "4162ecfae274abd05e60c24839eec6329240e58d"
+          }
+        },
+        {
+          "client_id": "720981351192-nb81ep9ml2klu7vlsqv1h7627oshc4cc.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAy9oL3KsC7eGBRuzf6hx1kSxpaMYy5cQ0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "720981351192-nb81ep9ml2klu7vlsqv1h7627oshc4cc.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
